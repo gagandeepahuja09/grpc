@@ -1,0 +1,23 @@
+syntax = "proto3";
+package ecommerce;
+
+option go_package = "productinfo/service/ecommerce";
+
+service ProductInfo {
+    rpc addProduct(Product) returns (ProductID);
+    rpc getProduct(ProductID) returns (Product);
+}
+
+message Product {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+}
+
+message ProductID {
+    string value = 1;
+}
+
+// protoc -I ecommerce \
+// ecommerce/product_info.proto \
+// --go_out=plugins=grpc:/Users/gagandeep.ahuja/Documents/PersonalProjects/grpc
